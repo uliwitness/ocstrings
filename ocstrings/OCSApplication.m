@@ -113,8 +113,8 @@
 	NSMutableString * stringsHeaderContents = [NSMutableString string];
 	NSMutableString * stringsSourceContents = [NSMutableString string];
 	
-	[stringsHeaderContents appendFormat: @"@interface %1$@Strings : NSObject\n", tableName];
-	[stringsSourceContents appendFormat: @"@implementation %1$@Strings\n", tableName];
+	[stringsHeaderContents appendFormat: @"#import <Foundation/Foundation.h>\n\n@interface %1$@Strings : NSObject\n", tableName];
+	[stringsSourceContents appendFormat: @"#import \"%1$@Strings.h\"\n\n@implementation %1$@Strings\n", tableName];
 	
 	NSScanner * scanner = [NSScanner scannerWithString: stringsStr];
 	scanner.charactersToBeSkipped = nil;
@@ -185,7 +185,7 @@
 		NSString * keyAsIdentifier = [self unescapeStringAndMakeIdentifier: keyString];
 		if (paramsStr.length > 0) {
 			[stringsHeaderContents appendFormat: @"+ (NSString*(^)(%1$@))%2$@;", paramsStr, keyAsIdentifier];
-			[stringsSourceContents appendFormat: @"+ (NSString*(^)(%1$@))%2$@\n{\n\treturn ^(%1$@)( [NSString stringWithFormat: NSLocalizedStringFromTable(@\"%3$@\", @\"%4$@\", @\"%5$@\")%6$@]; };\n}\n\n", paramsStr, keyAsIdentifier, keyString, tableName, valString,paramNamesStr];
+			[stringsSourceContents appendFormat: @"+ (NSString*(^)(%1$@))%2$@\n{\n\treturn ^(%1$@){ return [NSString stringWithFormat: NSLocalizedStringFromTable(@\"%3$@\", @\"%4$@\", @\"%5$@\")%6$@]; };\n}\n\n", paramsStr, keyAsIdentifier, keyString, tableName, valString,paramNamesStr];
 		} else {
 			[stringsHeaderContents appendFormat: @"+ (NSString*)%1$@%2$@;", keyAsIdentifier, paramsStr];
 			[stringsSourceContents appendFormat: @"+ (NSString*)%1$@%5$@\n{\n\treturn %6$sNSLocalizedStringFromTable(@\"%2$@\", @\"%3$@\", @\"%4$@\")%7$@%8$s;\n}\n\n", keyAsIdentifier, keyString, tableName, valString, paramsStr, (paramsStr.length > 0) ? "[NSString stringWithFormat: " : "", paramNamesStr, (paramsStr.length > 0) ? "]" : ""];
