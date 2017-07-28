@@ -12,9 +12,7 @@
 /* Logged-in welcome message: */
 "welcomeFormat" = "Welcome to Strings, %@!";
 
-
 "welcomeLoggedOut" = "I'm all alone.";
-
 
 /* Weird format: */
 "faveNumber" = "My favorite number is %1$08lx. That's like %2$08.5f";
