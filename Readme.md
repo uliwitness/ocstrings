@@ -19,10 +19,13 @@ strings file contains a format string like
 
 	"fooBar2" = "Hello %@, are you still %d years old?";
 
-it will generate a method that takes appropriate parameters and fills out
-the format, so you can call it like like
+it will generate a method that returns a block taking the appropriate parameters
+and fills out the format, so you can call it like
 
-	myField.stringValue = [FoobarFileStrings fooBar2: @"Georgia" : 56]
+	myField.stringValue = FoobarFileStrings.fooBar2(@"Georgia", 56)
+
+The reason this is a block is that this lets us simulate Swift-style parameter syntax
+and I find that more readable than unnamed ObjC parameters.
 
 ## License
 

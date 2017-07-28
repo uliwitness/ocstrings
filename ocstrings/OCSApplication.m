@@ -71,6 +71,7 @@
 	}
 	
 	NSInteger x = 1;
+	BOOL isFirst = YES;
 	NSArray<NSTextCheckingResult*>* matches = [regEx matchesInString: valString options:0 range:(NSRange){0,valString.length}];
 	for (NSTextCheckingResult * match in matches) {
 		NSRange positionRange = [match rangeAtIndex: 2];
@@ -86,9 +87,10 @@
 		NSString * typeForFormat = sTypesForFormats[lengthAndSpecifierStr];
 		if (!typeForFormat) typeForFormat = @"id";
 		
-		[paramsStr appendFormat: @":(%@)arg%ld", typeForFormat, x];
+		[paramsStr appendFormat: @"%s%@ arg%ld", isFirst ? "" : ", ", typeForFormat, x];
 		[paramNamesStr appendFormat: @", arg%ld", x];
 		
+		isFirst = NO;
 		++x;
 	}
 	
@@ -181,8 +183,13 @@
 		NSString * paramNamesStr = nil;
 		[self extractParamsFromFormatString: valString intoParams: &paramsStr paramNames: &paramNamesStr];
 		NSString * keyAsIdentifier = [self unescapeStringAndMakeIdentifier: keyString];
-		[stringsHeaderContents appendFormat: @"+ (NSString*)%1$@%2$@;", keyAsIdentifier, paramsStr];
-		[stringsSourceContents appendFormat: @"+ (NSString*)%1$@%5$@\n{\n\treturn %6$sNSLocalizedStringFromTable(@\"%2$@\", @\"%3$@\", @\"%4$@\")%7$@%8$s;\n}\n\n", keyAsIdentifier, keyString, tableName, valString, paramsStr, (paramsStr.length > 0) ? "[NSString stringWithFormat: " : "", paramNamesStr, (paramsStr.length > 0) ? "]" : ""];
+		if (paramsStr.length > 0) {
+			[stringsHeaderContents appendFormat: @"+ (NSString*(^)(%1$@))%2$@;", paramsStr, keyAsIdentifier];
+			[stringsSourceContents appendFormat: @"+ (NSString*(^)(%1$@))%2$@\n{\n\treturn ^(%1$@)( [NSString stringWithFormat: NSLocalizedStringFromTable(@\"%3$@\", @\"%4$@\", @\"%5$@\")%6$@]; };\n}\n\n", paramsStr, keyAsIdentifier, keyString, tableName, valString,paramNamesStr];
+		} else {
+			[stringsHeaderContents appendFormat: @"+ (NSString*)%1$@%2$@;", keyAsIdentifier, paramsStr];
+			[stringsSourceContents appendFormat: @"+ (NSString*)%1$@%5$@\n{\n\treturn %6$sNSLocalizedStringFromTable(@\"%2$@\", @\"%3$@\", @\"%4$@\")%7$@%8$s;\n}\n\n", keyAsIdentifier, keyString, tableName, valString, paramsStr, (paramsStr.length > 0) ? "[NSString stringWithFormat: " : "", paramNamesStr, (paramsStr.length > 0) ? "]" : ""];
+		}
 		
 		[scanner scanUpToString: @"\"" intoString: &inbetweenStr];
 		if (inbetweenStr) {
