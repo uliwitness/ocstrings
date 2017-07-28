@@ -26,6 +26,77 @@
 	return keyString;
 }
 
+
+-(void) extractParamsFromFormatString: (NSString*)valString intoParams: (NSString**)outParamsStr paramNames: (NSString**)outParamNamesStr
+{
+	NSError * err = nil;
+	NSMutableString * paramsStr = [NSMutableString string];
+	NSMutableString * paramNamesStr = [NSMutableString string];
+	static NSDictionary<NSString*,NSString*>* sTypesForFormats = nil;
+	if (!sTypesForFormats) {
+		sTypesForFormats = @{ @"d": @"int",
+							  @"u": @"unsigned int",
+							  @"x": @"unsigned int",
+							  @"X": @"unsigned int",
+							  @"o": @"unsigned int",
+							  @"ld": @"long",
+							  @"lu": @"unsigned long",
+							  @"lx": @"unsigned long",
+							  @"lX": @"unsigned long",
+							  @"lo": @"unsigned long",
+							  @"lld": @"long long",
+							  @"llu": @"unsigned long long",
+							  @"llx": @"unsigned long long",
+							  @"llX": @"unsigned long long",
+							  @"llo": @"unsigned long long",
+							  @"f": @"double",
+							  @"F": @"double",
+							  @"e": @"double",
+							  @"E": @"double",
+							  @"g": @"double",
+							  @"G": @"double",
+							  @"a": @"double",
+							  @"A": @"double",
+							  @"c": @"char",
+							  @"C": @"unichar",
+							  @"p": @"void*",
+							  @"s": @"char*",
+							  @"n": @"int*"};
+	}
+	
+	NSRegularExpression * regEx = [NSRegularExpression regularExpressionWithPattern: @"%(([0-9]+)[$])*([0-9]+)*(\\.([0-9]+))*([l]*[aAcCpnsxXdufFgGoieE@])" options: 0 error: &err];
+	if( !regEx ) {
+		NSLog(@"Couldn't parse format regex %@", err);
+		return;
+	}
+	
+	NSInteger x = 1;
+	NSArray<NSTextCheckingResult*>* matches = [regEx matchesInString: valString options:0 range:(NSRange){0,valString.length}];
+	for (NSTextCheckingResult * match in matches) {
+		NSRange positionRange = [match rangeAtIndex: 2];
+		NSString * positionStr = (positionRange.location != NSNotFound) ? [valString substringWithRange: positionRange] : nil;
+		if (positionStr) x = positionStr.integerValue;
+//		NSRange widthRange = [match rangeAtIndex: 3];
+//		NSString * widthStr = (widthRange.location != NSNotFound) ? [valString substringWithRange: widthRange] : nil;
+//		NSRange precisionRange = [match rangeAtIndex: 5];
+//		NSString * precisionStr = (precisionRange.location != NSNotFound) ? [valString substringWithRange: precisionRange] : nil;
+		NSRange lengthAndSpecifierRange = [match rangeAtIndex: 6];
+		NSString * lengthAndSpecifierStr = (lengthAndSpecifierRange.location != NSNotFound) ? [valString substringWithRange: lengthAndSpecifierRange] : nil;
+		
+		NSString * typeForFormat = sTypesForFormats[lengthAndSpecifierStr];
+		if (!typeForFormat) typeForFormat = @"id";
+		
+		[paramsStr appendFormat: @":(%@)arg%ld", typeForFormat, x];
+		[paramNamesStr appendFormat: @", arg%ld", x];
+		
+		++x;
+	}
+	
+	*outParamsStr = paramsStr;
+	*outParamNamesStr = paramNamesStr;
+}
+
+
 -(BOOL) openFile:(NSString *)filePath
 {
 	NSError * err = nil;
@@ -106,9 +177,12 @@
 		[scanner scanCharactersFromSet: wsCS intoString: nil];
 
 		// Generate code for this pair:
+		NSString * paramsStr = nil;
+		NSString * paramNamesStr = nil;
+		[self extractParamsFromFormatString: valString intoParams: &paramsStr paramNames: &paramNamesStr];
 		NSString * keyAsIdentifier = [self unescapeStringAndMakeIdentifier: keyString];
-		[stringsHeaderContents appendFormat: @"+ (NSString*)%1$@;", keyAsIdentifier];
-		[stringsSourceContents appendFormat: @"+ (NSString*)%1$@ { return NSLocalizedStringFromTable(@\"%2$@\", @\"%3$@\", @\"%4$@\"); }", keyAsIdentifier, keyString, tableName, valString];
+		[stringsHeaderContents appendFormat: @"+ (NSString*)%1$@%2$@;", keyAsIdentifier, paramsStr];
+		[stringsSourceContents appendFormat: @"+ (NSString*)%1$@%5$@\n{\n\treturn %6$sNSLocalizedStringFromTable(@\"%2$@\", @\"%3$@\", @\"%4$@\")%7$@%8$s;\n}\n\n", keyAsIdentifier, keyString, tableName, valString, paramsStr, (paramsStr.length > 0) ? "[NSString stringWithFormat: " : "", paramNamesStr, (paramsStr.length > 0) ? "]" : ""];
 		
 		[scanner scanUpToString: @"\"" intoString: &inbetweenStr];
 		if (inbetweenStr) {
