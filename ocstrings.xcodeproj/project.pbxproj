@@ -34,6 +34,7 @@
 		555C8A6B1F29B79300567282 /* ULICommandLineApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ULICommandLineApplication.m; sourceTree = "<group>"; };
 		555C8A6D1F29B7E000567282 /* OCSApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSApplication.h; sourceTree = "<group>"; };
 		555C8A6E1F29B7E000567282 /* OCSApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSApplication.m; sourceTree = "<group>"; };
+		55D311BB1F2CBE4100C7F19C /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +51,7 @@
 		555C8A561F29B73100567282 = {
 			isa = PBXGroup;
 			children = (
+				55D311BB1F2CBE4100C7F19C /* Readme.md */,
 				555C8A691F29B75A00567282 /* testfile.strings */,
 				555C8A611F29B73200567282 /* ocstrings */,
 				555C8A701F29B7ED00567282 /* Support Files */,
@@ -276,6 +278,7 @@
 				555C8A681F29B73200567282 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

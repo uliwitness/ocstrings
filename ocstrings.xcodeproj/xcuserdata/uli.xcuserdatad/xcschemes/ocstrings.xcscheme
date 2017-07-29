@@ -63,6 +63,10 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = "--language objective-c"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "testfile.strings"
             isEnabled = "YES">
          </CommandLineArgument>

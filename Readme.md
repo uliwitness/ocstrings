@@ -27,6 +27,12 @@ and fills out the format, so you can call it like
 The reason this is a block is that this lets us simulate Swift-style parameter syntax
 and I find that more readable than unnamed ObjC parameters.
 
+## Syntax
+
+	ocstrings [--language {swift|objective-c}] <stringsFilePath>
+
+If the language option is not specified, it defaults to generating Swift code.
+
 ## License
 
 	Copyright 2017 by Uli Kusterer.
