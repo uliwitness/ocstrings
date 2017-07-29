@@ -18,8 +18,8 @@
 		55D311FF1F2CDF1800C7F19C /* Testfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55D311E71F2CD7DB00C7F19C /* Testfile.strings */; };
 		55D312041F2CE15A00C7F19C /* ObjCTestfile.strings in CopyFiles */ = {isa = PBXBuildFile; fileRef = 55D312031F2CE13300C7F19C /* ObjCTestfile.strings */; };
 		55D312091F2CE1A400C7F19C /* ObjCTestfile.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55D312061F2CE1A400C7F19C /* ObjCTestfile.strings */; };
-		55D3120A1F2CE1A400C7F19C /* ObjCTestfileStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D312081F2CE1A400C7F19C /* ObjCTestfileStrings.m */; };
 		55D3120D1F2CE1F300C7F19C /* OCSTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D3120C1F2CE1F300C7F19C /* OCSTest.m */; };
+		55D312101F2CE65000C7F19C /* ULIObjCTestfileStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D3120F1F2CE65000C7F19C /* ULIObjCTestfileStrings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,11 +64,11 @@
 		55D311FA1F2CDE9F00C7F19C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55D312031F2CE13300C7F19C /* ObjCTestfile.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = ObjCTestfile.strings; sourceTree = "<group>"; };
 		55D312051F2CE1A300C7F19C /* TestApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		55D312061F2CE1A400C7F19C /* ObjCTestfile.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ObjCTestfile.strings; path = "../../../Library/Developer/Xcode/DerivedData/ocstrings-bnsdxjliunznzaecxcesnildfoww/Build/Products/Debug/ObjCTestfile.strings"; sourceTree = "<group>"; };
-		55D312071F2CE1A400C7F19C /* ObjCTestfileStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjCTestfileStrings.h; path = "../../../Library/Developer/Xcode/DerivedData/ocstrings-bnsdxjliunznzaecxcesnildfoww/Build/Products/Debug/ObjCTestfileStrings.h"; sourceTree = "<group>"; };
-		55D312081F2CE1A400C7F19C /* ObjCTestfileStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObjCTestfileStrings.m; path = "../../../Library/Developer/Xcode/DerivedData/ocstrings-bnsdxjliunznzaecxcesnildfoww/Build/Products/Debug/ObjCTestfileStrings.m"; sourceTree = "<group>"; };
+		55D312061F2CE1A400C7F19C /* ObjCTestfile.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = ObjCTestfile.strings; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D3120B1F2CE1F300C7F19C /* OCSTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCSTest.h; sourceTree = "<group>"; };
 		55D3120C1F2CE1F300C7F19C /* OCSTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCSTest.m; sourceTree = "<group>"; };
+		55D3120E1F2CE65000C7F19C /* ULIObjCTestfileStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ULIObjCTestfileStrings.h; sourceTree = BUILT_PRODUCTS_DIR; };
+		55D3120F1F2CE65000C7F19C /* ULIObjCTestfileStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ULIObjCTestfileStrings.m; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,8 +143,8 @@
 				55D311E71F2CD7DB00C7F19C /* Testfile.strings */,
 				55D311E81F2CD7DB00C7F19C /* TestfileStrings.swift */,
 				55D312061F2CE1A400C7F19C /* ObjCTestfile.strings */,
-				55D312071F2CE1A400C7F19C /* ObjCTestfileStrings.h */,
-				55D312081F2CE1A400C7F19C /* ObjCTestfileStrings.m */,
+				55D3120E1F2CE65000C7F19C /* ULIObjCTestfileStrings.h */,
+				55D3120F1F2CE65000C7F19C /* ULIObjCTestfileStrings.m */,
 				55D312051F2CE1A300C7F19C /* TestApp-Bridging-Header.h */,
 			);
 			path = TestApp;
@@ -257,7 +257,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Running '${BUILT_PRODUCTS_DIR}'/ocstrings\"\nPREVIOUS_DIR=`pwd`\ncd ${BUILT_PRODUCTS_DIR}\n${BUILT_PRODUCTS_DIR}/ocstrings Testfile.strings\n${BUILT_PRODUCTS_DIR}/ocstrings --language objective-c ObjCTestfile.strings\ncd ${PREVIOUS_DIR}";
+			shellScript = "echo \"Running '${BUILT_PRODUCTS_DIR}'/ocstrings\"\nPREVIOUS_DIR=`pwd`\ncd ${BUILT_PRODUCTS_DIR}\n${BUILT_PRODUCTS_DIR}/ocstrings Testfile.strings\n${BUILT_PRODUCTS_DIR}/ocstrings --language objective-c --class-prefix ULI ObjCTestfile.strings\ncd ${PREVIOUS_DIR}";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -277,9 +277,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				55D311FE1F2CDF1500C7F19C /* TestfileStrings.swift in Sources */,
+				55D312101F2CE65000C7F19C /* ULIObjCTestfileStrings.m in Sources */,
 				55D3120D1F2CE1F300C7F19C /* OCSTest.m in Sources */,
 				55D311F21F2CDE9F00C7F19C /* AppDelegate.swift in Sources */,
-				55D3120A1F2CE1A400C7F19C /* ObjCTestfileStrings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

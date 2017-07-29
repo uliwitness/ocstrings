@@ -7,17 +7,17 @@
 //
 
 #import "OCSTest.h"
-#import "ObjCTestfileStrings.h"
+#import "ULIObjCTestfileStrings.h"
 
 
 @implementation OCSTest
 
 +(void) runObjCTest
 {
-	NSLog( @"ObjC Test:\n%@\n%@\n%@\n%@", ObjCTestfileStrings.faveNumber( 123, 0.5 ),
-			ObjCTestfileStrings.welcomeFormat(@"Grace"),
-			ObjCTestfileStrings.welcomeToStrings,
-			ObjCTestfileStrings.welcomeLoggedOut);
+	NSLog( @"ObjC Test:\n%@\n%@\n%@\n%@", ULIObjCTestfileStrings.faveNumber(42, 42.0009),
+			ULIObjCTestfileStrings.welcomeFormat(@"Sandy"),
+			ULIObjCTestfileStrings.welcomeToStrings,
+			ULIObjCTestfileStrings.welcomeLoggedOut);
 }
 
 @end
