@@ -7,10 +7,14 @@ for all strings in a .strings file.
 
 When you write
 
+	myField.stringValue = NSLocalizedString( "fooBar", tableName: "FoobarFile", comment: "" )
+
+or
+
 	myField.stringValue = NSLocalizedStringFromTable( @"fooBar", @"FoobarFile", @"" )
 
 it is easy to mistype the key and the compiler can't tell you. ocstrings wraps
-these calls in an ObjC class so you can instead retrieve them like
+these calls in a class so you can instead retrieve them like
 
 	myField.stringValue = FoobarFileStrings.fooBar
 
@@ -19,13 +23,14 @@ strings file contains a format string like
 
 	"fooBar2" = "Hello %@, are you still %d years old?";
 
-it will generate a method that returns a block taking the appropriate parameters
+it will generate a method that takes the appropriate parameters
 and fills out the format, so you can call it like
 
-	myField.stringValue = FoobarFileStrings.fooBar2(@"Georgia", 56)
+	myField.stringValue = FoobarFileStrings.fooBar2("Georgia", 56)
 
-The reason this is a block is that this lets us simulate Swift-style parameter syntax
-and I find that more readable than unnamed ObjC parameters.
+resp.
+
+	myField.stringValue = [FoobarFileStrings fooBar2: @"Georgia" : 56]
 
 ## Syntax
 

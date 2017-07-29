@@ -14,8 +14,8 @@
 
 +(void) runObjCTest
 {
-	NSLog( @"ObjC Test:\n%@\n%@\n%@\n%@", ULIObjCTestfileStrings.faveNumber(42, 42.0009),
-			ULIObjCTestfileStrings.welcomeFormat(@"Sandy"),
+	NSLog( @"ObjC Test:\n%@\n%@\n%@\n%@", [ULIObjCTestfileStrings faveNumber:42 :42.0009],
+		  [ULIObjCTestfileStrings welcomeFormat: @"Sandy"],
 			ULIObjCTestfileStrings.welcomeToStrings,
 			ULIObjCTestfileStrings.welcomeLoggedOut);
 }
