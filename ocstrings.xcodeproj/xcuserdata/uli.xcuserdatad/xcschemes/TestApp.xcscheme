@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "555C8A5E1F29B73100567282"
-               BuildableName = "ocstrings"
-               BlueprintName = "ocstrings"
+               BlueprintIdentifier = "55D311EE1F2CDE9F00C7F19C"
+               BuildableName = "TestApp.app"
+               BlueprintName = "TestApp"
                ReferencedContainer = "container:ocstrings.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "555C8A5E1F29B73100567282"
-            BuildableName = "ocstrings"
-            BlueprintName = "ocstrings"
+            BlueprintIdentifier = "55D311EE1F2CDE9F00C7F19C"
+            BuildableName = "TestApp.app"
+            BlueprintName = "TestApp"
             ReferencedContainer = "container:ocstrings.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,22 +55,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "555C8A5E1F29B73100567282"
-            BuildableName = "ocstrings"
-            BlueprintName = "ocstrings"
+            BlueprintIdentifier = "55D311EE1F2CDE9F00C7F19C"
+            BuildableName = "TestApp.app"
+            BlueprintName = "TestApp"
             ReferencedContainer = "container:ocstrings.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "--language objective-c"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "testfile.strings"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -84,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "555C8A5E1F29B73100567282"
-            BuildableName = "ocstrings"
-            BlueprintName = "ocstrings"
+            BlueprintIdentifier = "55D311EE1F2CDE9F00C7F19C"
+            BuildableName = "TestApp.app"
+            BlueprintName = "TestApp"
             ReferencedContainer = "container:ocstrings.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

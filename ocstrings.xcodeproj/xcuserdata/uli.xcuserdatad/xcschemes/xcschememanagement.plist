@@ -4,15 +4,40 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>TestApp.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>ocstrings.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>swifttestapp.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>555C8A5E1F29B73100567282</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>55D311BF1F2CD11F00C7F19C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>55D311D71F2CD7B600C7F19C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>55D311EE1F2CDE9F00C7F19C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
