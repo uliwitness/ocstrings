@@ -176,7 +176,7 @@
 	NSDictionary<NSString*,id>* template = [self templateNamed: [[NSUserDefaults standardUserDefaults] objectForKey: @"-language"]];
 
 	// Build output file paths:
-	NSString * basePath = [filePath stringByDeletingPathExtension];
+	NSString * basePath = [filePath.lastPathComponent stringByDeletingPathExtension];
 	NSString * classPrefix = [[NSUserDefaults standardUserDefaults] objectForKey: @"-class-prefix"];
 	if (classPrefix) {
 		basePath = [[basePath stringByDeletingLastPathComponent] stringByAppendingPathComponent: [classPrefix stringByAppendingString: [basePath lastPathComponent]]];

@@ -29,9 +29,13 @@ and I find that more readable than unnamed ObjC parameters.
 
 ## Syntax
 
-	ocstrings [--language {swift|objective-c}] <stringsFilePath>
+	ocstrings [--language {swift|objective-c}] [--class-prefix <prefixString>] <stringsFilePath>
 
 If the language option is not specified, it defaults to generating Swift code.
+
+If you specify a class prefix, the generated class name and generated filename will be 
+prefixed with that string (Useful to e.g. give the class generated from Localizable.strings
+a proper prefix).
 
 ## License
 
