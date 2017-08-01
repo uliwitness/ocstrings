@@ -257,7 +257,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Running '${BUILT_PRODUCTS_DIR}'/ocstrings\"\nPREVIOUS_DIR=`pwd`\ncd ${BUILT_PRODUCTS_DIR}\n${BUILT_PRODUCTS_DIR}/ocstrings Testfile.strings\n${BUILT_PRODUCTS_DIR}/ocstrings --language objective-c --class-prefix ULI ObjCTestfile.strings\ncd ${PREVIOUS_DIR}";
+			shellScript = "PREVIOUS_DIR=`pwd`\ncd ${BUILT_PRODUCTS_DIR}\n${BUILT_PRODUCTS_DIR}/ocstrings Testfile.strings\n${BUILT_PRODUCTS_DIR}/ocstrings --language objective-c --class-prefix ULI ObjCTestfile.strings\ncd ${PREVIOUS_DIR}";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -473,6 +473,7 @@
 				55D311FD1F2CDE9F00C7F19C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
